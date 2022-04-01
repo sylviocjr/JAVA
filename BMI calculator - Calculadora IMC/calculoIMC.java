@@ -12,10 +12,34 @@ import javax.swing.JOptionPane;
  */
 public class calculoIMC extends javax.swing.JFrame {
 
-    double imc = 0;
-    double peso = 0;
-    double altura = 0;
-    String caracteres="0987654321.";  /** Será utilizado para validação de
+    private double imc = 0;
+    private double peso = 0;
+    private double altura = 0;
+
+    public double getImc() {
+        return imc;
+    }
+
+    public void setImc(double imc) {
+        this.imc = imc;
+    }
+
+    public double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
+    }
+
+    public double getAltura() {
+        return altura;
+    }
+
+    public void setAltura(double altura) {
+        this.altura = altura;
+    }
+    public String caracteres="0987654321.";  /** Será utilizado para validação de
      * entradas numéricas nos campos aplicáveis.
      * Método visto em https://www.devmedia.com.br/como-alterar-o-componente
      * -jtextfield-para-aceitar-apenas-numeros/26152
@@ -43,13 +67,13 @@ public class calculoIMC extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
+        campoIMC = new javax.swing.JTextField();
+        campoCondicao = new javax.swing.JTextField();
+        calcularIMC_ = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Limpar_ = new javax.swing.JButton();
+        Sair_ = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -105,15 +129,15 @@ public class calculoIMC extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setText("Conforme critérios médicos, sua condição é de: ");
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoIMC.setEditable(false);
+        campoIMC.setBackground(new java.awt.Color(255, 255, 255));
+        campoIMC.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        campoIMC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        campoCondicao.setEditable(false);
+        campoCondicao.setBackground(new java.awt.Color(255, 255, 255));
+        campoCondicao.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        campoCondicao.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -125,11 +149,11 @@ public class calculoIMC extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(campoCondicao, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(campoIMC, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -138,20 +162,20 @@ public class calculoIMC extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoIMC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(campoCondicao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setText("Calcular IMC");
-        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        calcularIMC_.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        calcularIMC_.setText("Calcular IMC");
+        calcularIMC_.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        calcularIMC_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                calcularIMC_ActionPerformed(evt);
             }
         });
 
@@ -178,7 +202,7 @@ public class calculoIMC extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9)))
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(calcularIMC_, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -196,7 +220,7 @@ public class calculoIMC extends javax.swing.JFrame {
                         .addComponent(campoAltura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel9))
                 .addGap(15, 15, 15)
-                .addComponent(jButton3)
+                .addComponent(calcularIMC_)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
@@ -208,21 +232,21 @@ public class calculoIMC extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setText("Fonte: https://bvsms.saude.gov.br/bvs/dicas/215_obesidade.html");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton1.setText("Limpar");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Limpar_.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Limpar_.setText("Limpar");
+        Limpar_.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Limpar_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                Limpar_ActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jButton2.setText("Sair");
-        jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Sair_.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        Sair_.setText("Sair");
+        Sair_.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        Sair_.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                Sair_ActionPerformed(evt);
             }
         });
 
@@ -238,9 +262,9 @@ public class calculoIMC extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Limpar_, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Sair_, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -257,8 +281,8 @@ public class calculoIMC extends javax.swing.JFrame {
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(Limpar_)
+                    .addComponent(Sair_))
                 .addGap(23, 23, 23))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -403,20 +427,20 @@ public class calculoIMC extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void Sair_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sair_ActionPerformed
         // Botão "SAIR"
         System.exit(0);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_Sair_ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void Limpar_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Limpar_ActionPerformed
         //Botão "LIMPAR" - Deve limpar todos os campos
         campoPeso.setText("");
         campoAltura.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
-    }//GEN-LAST:event_jButton1ActionPerformed
+        campoIMC.setText("");
+        campoCondicao.setText("");
+    }//GEN-LAST:event_Limpar_ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void calcularIMC_ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcularIMC_ActionPerformed
         // Botão "CALCULAR imc"
         
         if ((campoPeso.getText()).equals("")) { // Atentar muito bem para STX
@@ -427,52 +451,56 @@ public class calculoIMC extends javax.swing.JFrame {
             campoAltura.setText("0");
         }
                 
-        peso = Float.parseFloat(campoPeso.getText());
-        altura = Float.parseFloat(campoAltura.getText());
+        setPeso(Float.parseFloat(campoPeso.getText()));
+        setAltura(Float.parseFloat(campoAltura.getText()));
 
         /** Rotina de validação de valores: peso maior que 0 e menor que 500 Kg;
         * altura maior que - e menor que 250 cm
         */
-        if ((peso > 0 && peso < 500) && (altura > 0 && altura < 250)) {
+        if ((getPeso() > 0 && getPeso() < 500) && (getAltura() > 0 &&
+            getAltura() < 250)) {
 
-            altura = altura / 100;
-            imc = peso / (Math.pow(altura, 2));
+            //altura = altura / 100;
+            setAltura(getAltura()/100);
+            //imc = peso / (Math.pow(altura, 2));
+            setImc(getPeso()/(Math.pow(getAltura(),2)));
 
             // Formatação com duas casas decimais do IMC
-            jTextField3.setText(String.format("%.2f", imc));
+            campoIMC.setText(String.format("%.2f", getImc()));
 
             // Outra opção mais rebuscada seria:
             //String imc_formatado = String.format("%.2f", imc);
             //jTextField3.setText(imc_formatado);
 
             // Rotina de condição clínica conforme IMC:
-            if (imc < 18.5){
-                jTextField4.setText("Abaixo do peso");
+            if (getImc() < 18.5){
+                campoCondicao.setText("Abaixo do peso");
             }
-            else if (imc >= 18.5 && imc < 25){
-                jTextField4.setText("Peso normal");
-            }
-
-            else if (imc >= 25 && imc < 30) {
-                jTextField4.setText("Sobrepeso !!");
+            else if (getImc() >= 18.5 && getImc() < 25){
+                campoCondicao.setText("Peso normal");
             }
 
-            else if (imc >= 30){
-                jTextField4.setText("Obesidade !!!");
+            else if (getImc() >= 25 && getImc() < 30) {
+                campoCondicao.setText("Sobrepeso !!");
+            }
+
+            else if (getImc() >= 30){
+                campoCondicao.setText("Obesidade !!!");
             }
 
             else {
-                jTextField4.setText("Erro !!");
+                campoCondicao.setText("Erro !!");
             }
         }
 
         else {
-            JOptionPane.showMessageDialog(rootPane, "Valor inválido ! Digite novamente");
+            JOptionPane.showMessageDialog(rootPane, "Valor inválido ! "
+            + "Digite novamente");
             campoPeso.setText("");
             campoAltura.setText("");
         }
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_calcularIMC_ActionPerformed
 
     private void campoAlturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoAlturaKeyTyped
         /// Validação entradas somente numéricas:
@@ -501,11 +529,13 @@ public class calculoIMC extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Limpar_;
+    private javax.swing.JButton Sair_;
+    private javax.swing.JButton calcularIMC_;
     private javax.swing.JTextField campoAltura;
+    private javax.swing.JTextField campoCondicao;
+    private javax.swing.JTextField campoIMC;
     private javax.swing.JTextField campoPeso;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -533,7 +563,5 @@ public class calculoIMC extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
